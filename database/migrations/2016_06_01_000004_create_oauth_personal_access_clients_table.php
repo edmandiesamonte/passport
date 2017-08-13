@@ -16,6 +16,11 @@ class CreateOauthPersonalAccessClientsTable extends Migration
         Schema::create('oauth_personal_access_clients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('client_id',40)->index();
+            $table->foreign('client_id')
+                ->references('id')
+                ->on('oauth_clients')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -17,6 +17,11 @@ class CreateOauthAccessTokensTable extends Migration
             $table->string('id', 100)->primary();
             $table->integer('user_id')->index()->nullable();
             $table->string('client_id',40);
+            $table->foreign('client_id')
+                ->references('id')
+                ->on('oauth_clients')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->string('name')->nullable();
             $table->text('scopes')->nullable();
             $table->boolean('revoked');
