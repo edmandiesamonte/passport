@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Laravel\Passport\Passport;
 
 class ClientControllerTest extends PHPUnit_Framework_TestCase
 {
@@ -34,7 +35,7 @@ class ClientControllerTest extends PHPUnit_Framework_TestCase
             return new ClientControllerFakeUser;
         });
 
-        $clients->shouldReceive('create')->once()->with(1, 'client name', 'http://localhost')->andReturn($client = new Laravel\Passport\Client);
+        $clients->shouldReceive('create')->once()->with(1, 'client name', 'http://localhost')->andReturn($client = new Passport::$clientClass);
 
         $validator = Mockery::mock('Illuminate\Contracts\Validation\Factory');
         $validator->shouldReceive('make')->once()->with([

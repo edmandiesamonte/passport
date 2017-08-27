@@ -1,10 +1,10 @@
 <?php
 
-use Mockery\Mock;
 use Illuminate\Http\Request;
-use Laravel\Passport\Client;
-use Laravel\Passport\TokenRepository;
 use Laravel\Passport\Http\Controllers\AuthorizedAccessTokenController;
+use Laravel\Passport\Passport;
+use Laravel\Passport\TokenRepository;
+use Mockery\Mock;
 
 class AuthorizedAccessTokenControllerTest extends PHPUnit_Framework_TestCase
 {
@@ -39,14 +39,15 @@ class AuthorizedAccessTokenControllerTest extends PHPUnit_Framework_TestCase
         $token2 = new Laravel\Passport\Token;
 
         $userTokens = Mockery::mock();
-        $client1 = new Client;
+        $client1 = new Passport::$clientClass;
         $client1->personal_access_client = true;
-        $client2 = new Client;
+        $client2 = new Passport::$clientClass;
         $client2->personal_access_client = false;
         $token1->client = $client1;
         $token2->client = $client2;
         $userTokens->shouldReceive('load')->with('client')->andReturn(collect([
-            $token1, $token2,
+            $token1,
+            $token2,
         ]));
 
         $this->tokenRepository->shouldReceive('forUser')->andReturn($userTokens);
@@ -68,7 +69,7 @@ class AuthorizedAccessTokenControllerTest extends PHPUnit_Framework_TestCase
     {
         $request = Request::create('/', 'GET');
 
-        $token1 = Mockery::mock(Laravel\Passport\Token::class.'[revoke]');
+        $token1 = Mockery::mock(Laravel\Passport\Token::class . '[revoke]');
         $token1->id = 1;
         $token1->shouldReceive('revoke')->once();
 
