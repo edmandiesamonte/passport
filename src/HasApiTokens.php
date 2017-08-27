@@ -20,7 +20,7 @@ trait HasApiTokens
      */
     public function clients()
     {
-        return $this->hasMany(Passport::$clientClass, 'user_id');
+        return $this->hasMany(Client::class, 'user_id');
     }
 
     /**
