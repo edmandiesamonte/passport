@@ -12,7 +12,7 @@ class ClientRepository
      */
     public function find($id)
     {
-        return Client::find($id);
+        return Passport::$clientClass::find($id);
     }
 
     /**
@@ -37,7 +37,7 @@ class ClientRepository
      */
     public function findForUser($clientId, $userId)
     {
-        return Client::where('id', $clientId)
+        return Passport::$clientClass::where('id', $clientId)
                      ->where('user_id', $userId)
                      ->first();
     }
@@ -50,7 +50,7 @@ class ClientRepository
      */
     public function forUser($userId)
     {
-        return Client::where('user_id', $userId)
+        return Passport::$clientClass::where('user_id', $userId)
                         ->orderBy('name', 'asc')->get();
     }
 
@@ -93,7 +93,7 @@ class ClientRepository
      */
     public function create($userId, $name, $redirect, $personalAccess = false, $password = false)
     {
-        $client = (new Client)->forceFill([
+        $client = (new Passport::$clientClass)->forceFill([
             'user_id' => $userId,
             'name' => $name,
             'secret' => str_random(40),
