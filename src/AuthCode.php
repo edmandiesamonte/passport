@@ -45,6 +45,6 @@ class AuthCode extends Model
      */
     public function client()
     {
-        return $this->belongsTo(Passport::$clientClass);
+        return $this->belongsTo(Client::class);
     }
 }
