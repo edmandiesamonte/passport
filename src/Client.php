@@ -6,12 +6,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (Client $client){
+            if(!$client->id){
+                $client->id = Passport::generateClientId($client->name);
+            }
+        });
+    }
+
     /**
      * The database table used by the model.
      *
      * @var string
      */
     protected $table = 'oauth_clients';
+
+    /**
+     * String-based ID
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 
     /**
      * The guarded attributes on the model.

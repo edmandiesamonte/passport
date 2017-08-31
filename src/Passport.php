@@ -83,6 +83,13 @@ class Passport
     public static $runsMigrations = true;
 
     /**
+     * The function that generates the Client ID
+     *
+     * @var \Closure|function
+     */
+    public static $clientIdGenerator;
+
+    /**
      * Enable the implicit grant type.
      *
      * @return static
@@ -331,5 +338,31 @@ class Passport
         static::$runsMigrations = false;
 
         return new static;
+    }
+
+    /**
+     * Generates a Client ID
+     *
+     * @param string $clientName
+     * @return string
+     */
+    public static function generateClientId($clientName)
+    {
+        if (is_callable(static::$clientIdGenerator)) {
+            return (string)call_user_func(static::$clientIdGenerator, $clientName);
+        }
+
+        $clientIdLength = config('passport.id_length', 12);
+        $max = pow(10, $clientIdLength) - 1;
+        if ($max > PHP_INT_MAX) {
+            $max = PHP_INT_MAX;
+        }
+        $value = random_int(0, $max);
+        return str_pad($value, $clientIdLength, '0', STR_PAD_LEFT);
+    }
+
+    public static function setClientIdGenerator(\Closure $generator)
+    {
+        static::$clientIdGenerator = $generator;
     }
 }
