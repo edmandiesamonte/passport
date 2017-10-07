@@ -26,6 +26,8 @@ Passport::setClientIdGenerator(function($clientName){
 
 This example will generate something like `mobile-app-client-f8`
 
+This is helpful if you want to generate fixed-length Client IDs and to discourage brute-force Client ID guess attacks.
+
 
 ## License
 
