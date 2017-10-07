@@ -1,6 +1,6 @@
 {
-    "name": "laravel/passport",
-    "description": "Laravel Passport provides OAuth2 server support to Laravel.",
+    "name": "edmandiesamonte/passport",
+    "description": "Fork of official Laravel Passport with support for string-based Client IDs",
     "keywords": ["laravel", "passport", "oauth"],
     "license": "MIT",
     "support": {
@@ -9,8 +9,8 @@
     },
     "authors": [
         {
-            "name": "Taylor Otwell",
-            "email": "taylor@laravel.com"
+            "name": "Edmandie Samonte",
+            "email": "edmandie.samonte@gmail.com"
         }
     ],
     "require": {

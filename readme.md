@@ -8,12 +8,26 @@
 </p>
 
 ## Introduction
+> This is a fork of the official Laravel Passport to support string-based OAuth2 Client IDs
 
 Laravel Passport is an OAuth2 server and API authentication package that is simple and enjoyable to use.
 
 ## Official Documentation
 
 Documentation for Passport can be found on the [Laravel website](http://laravel.com/docs/master/passport).
+
+## Custom Client ID generator
+Code example:
+```php
+Passport::setClientIdGenerator(function($clientName){
+    return str_slug($clientName) . "-" . bin2hex(random_bytes(2));
+});
+```
+
+This example will generate something like `mobile-app-client-f8`
+
+This is helpful if you want to generate fixed-length Client IDs and to discourage brute-force Client ID guess attacks.
+
 
 ## License
 
