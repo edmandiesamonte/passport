@@ -14,7 +14,7 @@ Laravel Passport is an OAuth2 server and API authentication package that is simp
 
 ## Installation
 ```
-composer require edmandiesamonte/passport
+composer require edmandiesamonte/passport dev-4.0
 ```
 
 ## Official Documentation
