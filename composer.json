@@ -1,11 +1,11 @@
 {
-    "name": "edmandiesamonte/passport",
+    "name": "edsamonte/passport",
     "description": "Fork of official Laravel Passport with support for string-based Client IDs",
     "keywords": ["laravel", "passport", "oauth"],
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/edmandiesamonte/passport/issues",
-        "source": "https://github.com/edmandiesamonte/passport"
+        "issues": "https://github.com/edsamonte/passport/issues",
+        "source": "https://github.com/edsamonte/passport"
     },
     "authors": [
         {
@@ -52,6 +52,6 @@
     "config": {
         "sort-packages": true
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
